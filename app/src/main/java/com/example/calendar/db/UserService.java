@@ -39,9 +39,9 @@ public class UserService {
     public void update(Note note){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("title",note.getTitle());
-        values.put("text", note.getText());
-        values.put("time", note.getTime());
+        values.put("TITLE",note.getTitle());
+        values.put("TEXT", note.getText());
+        values.put("TIME", note.getTime());
         db.update(tbname, values, "ID=?", new String[]{String.valueOf(note.getId())});
         db.close();
     }

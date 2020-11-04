@@ -53,6 +53,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         calendar = Calendar.getInstance();
+//        SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy年mm月dd日");
+        SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm");
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        calender = year + "年" + month + "月" + dayOfMonth+"日";
+//        int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+//        int minute = calendar.get(Calendar.MINUTE);
+//        time = hourOfDay + ":" + minute;
+        time = formatter2.format(calendar.getTime());
         buttonTime = findViewById(R.id.btTime);
         buttonCalender = findViewById(R.id.btCalender);
         buttonSubmit = findViewById(R.id.btSubmit);
@@ -101,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                time = (hourOfDay+8) + ":" + minute;//人工校准
+                time = hourOfDay + ":" + minute;//人工校准
                 Log.e(TAG, "time : " + time);
             }
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
